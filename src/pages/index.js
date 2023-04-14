@@ -3,6 +3,7 @@ import { getProviders, getSession, useSession } from 'next-auth/react'
 import Feed from '@/components/Feed/Feed'
 import Sidebar from '@/components/Sidebar/Sidebar'
 import Login from '@/components/Login/Login'
+import Modal from '@/components/Modal/Modal'
 
 export default function Home({ trendingResults, followResults, providers }) {
   const { data: session } = useSession()
@@ -13,6 +14,7 @@ export default function Home({ trendingResults, followResults, providers }) {
     <main className="flex min-h-screen max-w-[1500px] mx-auto">
       <Sidebar />
       <Feed />
+      <Modal />
     </main>
   )
 }
