@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
 import {
   HiDotsHorizontal,
   HiOutlineSwitchHorizontal,
@@ -11,12 +12,68 @@ import {
   HiOutlineShare,
 } from 'react-icons/hi'
 import Moment from 'react-moment'
+import { useRouter } from 'next/router'
+import { collection, deleteDoc, doc, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore'
 
-const Tweet = ({ id, tweet, tweetPage, comments }) => {
+import useTweetIdState from '@/store/tweetIdState'
+import useModalState from '@/store/modalState'
+import { db } from '@/utils/firebase/firebase'
+
+const Tweet = ({ id, tweet, tweetPage }) => {
+  const [comments, setComments] = useState([])
+  const [liked, setLiked] = useState(false)
+  const [likes, setLikes] = useState([])
+  const { setTweetId } = useTweetIdState()
+  const { setIsOpen } = useModalState()
   const { data: session } = useSession()
+  const router = useRouter()
+
+  const removeTweet = (e) => {
+    e.stopPropagation()
+    deleteDoc(doc(db, 'tweets', id))
+    router.push('/')
+  }
+
+  const responseTweet = (e) => {
+    e.stopPropagation()
+    setTweetId(id)
+    setIsOpen(true)
+  }
+
+  useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, 'tweets', id, 'comments'), orderBy('timestamp', 'desc')),
+        (snapshot) => setComments(snapshot.docs),
+      ),
+    [id],
+  )
+
+  useEffect(
+    () => onSnapshot(collection(db, 'tweets', id, 'likes'), (snapshot) => setLikes(snapshot.docs)),
+    [id],
+  )
+  useEffect(
+    () => setLiked(likes.findIndex((like) => like.id === session?.user?.uid) !== -1),
+    [likes, session],
+  )
+
+  const likeTweet = async (e) => {
+    e.stopPropagation()
+    if (liked) {
+      return await deleteDoc(doc(db, 'tweets', id, 'likes', session.user.uid))
+    }
+
+    return await setDoc(doc(db, 'tweets', id, 'likes', session.user.uid), {
+      username: session.user.name,
+    })
+  }
 
   return (
-    <div className="p-3 flex cursor-pointer border-b border-gray-700">
+    <div
+      className="p-3 flex cursor-pointer border-b border-gray-700"
+      onClick={() => router.push(`/${id}`)}
+    >
       {!tweetPage && (
         <img alt="user image" className="w-11 h-11 rounded-full mr-4" src={tweet?.userImg} />
       )}
@@ -60,14 +117,7 @@ const Tweet = ({ id, tweet, tweetPage, comments }) => {
           />
         )}
         <div className={`text-[@6e767d] flex justify-between w-10/12 ${tweetPage && 'mx-auto'}`}>
-          <div
-            className="flex items-center space-x-1 group"
-            onClick={(e) => {
-              // e.stopPropagation()
-              // settweetId(id)
-              // setIsOpen(true)
-            }}
-          >
+          <div className="flex items-center space-x-1 group" onClick={responseTweet}>
             <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-[#1d9bf0] group-hover:bg-opacity-10">
               <HiOutlineChat className="h-5 text-[#d9d9d9]  group-hover:text-[#1d9bf0]" />
             </div>
@@ -77,14 +127,7 @@ const Tweet = ({ id, tweet, tweetPage, comments }) => {
           </div>
 
           {session.user.uid === tweet?.id ? (
-            <div
-              className="flex items-center space-x-1 group"
-              onClick={(e) => {
-                // e.stopPropagation()
-                // deleteDoc(doc(db, 'tweets', id))
-                // router.push('/')
-              }}
-            >
+            <div className="flex items-center space-x-1 group" onClick={removeTweet}>
               <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-red-600/10">
                 <HiOutlineTrash className="h-5  group-hover:text-red-600" />
               </div>
@@ -97,14 +140,8 @@ const Tweet = ({ id, tweet, tweetPage, comments }) => {
             </div>
           )}
 
-          <div
-            className="flex items-center space-x-1 group"
-            onClick={(e) => {
-              // e.stopPropagation()
-              // likeTweet()
-            }}
-          >
-            {/* <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-pink-600/10">
+          <div className="flex items-center space-x-1 group" onClick={likeTweet}>
+            <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-pink-600/10">
               {liked ? (
                 <HiHeart className="h-5  text-pink-600" />
               ) : (
@@ -115,7 +152,7 @@ const Tweet = ({ id, tweet, tweetPage, comments }) => {
               <span className={`group-hover:text-pink-600 text-sm ${liked && 'text-pink-600'}`}>
                 {likes?.length}
               </span>
-            )} */}
+            )}
           </div>
 
           <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group">
