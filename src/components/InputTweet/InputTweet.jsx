@@ -11,7 +11,7 @@ import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/fi
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { useSession } from 'next-auth/react'
 
-import { db, storage } from '../../utils/firebase/firebase'
+import { db, storage } from '@/utils/firebase/firebase'
 
 /* eslint-disable @next/next/no-img-element */
 const InputTweet = () => {
@@ -89,8 +89,8 @@ const InputTweet = () => {
 
   return (
     <div
-      className={`border-b border-grey-700 p-3 flex space-x-3 overflow-y-scroll
-       ${loading && 'opacity-60'} `}
+      className={`border-b border-grey-700 p-3 flex space-x-3 
+        ${loading && 'opacity-60'} `}
     >
       <img
         alt="User avatar"
