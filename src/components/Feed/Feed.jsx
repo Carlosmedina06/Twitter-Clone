@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import { HiSparkles } from 'react-icons/hi'
 import { onSnapshot, collection, query, orderBy } from '@firebase/firestore'
 
-import { db } from '../../utils/firebase/firebase'
 import InputTweet from '../InputTweet/InputTweet'
 import Tweet from '../Tweet/Tweet'
+
+import { db } from '@/utils/firebase/firebase'
 
 const Feed = () => {
   const [tweets, setTweets] = useState([])
