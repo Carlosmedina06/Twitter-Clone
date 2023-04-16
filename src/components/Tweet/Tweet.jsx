@@ -119,23 +119,25 @@ const Tweet = ({ id, tweet, tweetPage }) => {
         <div className={`text-[@6e767d] flex justify-between w-10/12 ${tweetPage && 'mx-auto'}`}>
           <div className="flex items-center space-x-1 group" onClick={responseTweet}>
             <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-[#1d9bf0] group-hover:bg-opacity-10">
-              <HiOutlineChat className="h-5 text-[#d9d9d9]  group-hover:text-[#1d9bf0]" />
+              <HiOutlineChat className="h-5 text-[#6e767d]  group-hover:text-[#1d9bf0]" />
             </div>
             {comments?.length > 0 && (
-              <span className="group-hover:text-[#1d9bf0] text-sm">{comments.length}</span>
+              <span className=" text-[#6e767d] group-hover:text-[#1d9bf0] text-sm">
+                {comments.length}
+              </span>
             )}
           </div>
 
           {session.user.uid === tweet?.id ? (
             <div className="flex items-center space-x-1 group" onClick={removeTweet}>
               <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-red-600/10">
-                <HiOutlineTrash className="h-5  group-hover:text-red-600" />
+                <HiOutlineTrash className="h-5 text-[#6e767d]  group-hover:text-red-600" />
               </div>
             </div>
           ) : (
             <div className="flex items-center space-x-1 group">
               <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-green-500/10">
-                <HiOutlineSwitchHorizontal className="h-5  group-hover:text-green-500" />
+                <HiOutlineSwitchHorizontal className="h-5 text-[#6e767d]  group-hover:text-green-500" />
               </div>
             </div>
           )}
@@ -143,23 +145,26 @@ const Tweet = ({ id, tweet, tweetPage }) => {
           <div className="flex items-center space-x-1 group" onClick={likeTweet}>
             <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group-hover:bg-pink-600/10">
               {liked ? (
-                <HiHeart className="h-5  text-pink-600" />
+                <HiHeart className="h-5   text-pink-600" />
               ) : (
-                <HiOutlineHeart className="h-5 group-hover:text-pink-600" />
+                <HiOutlineHeart className="h-5 text-[#6e767d] group-hover:text-pink-600" />
               )}
             </div>
             {likes?.length > 0 && (
-              <span className={`group-hover:text-pink-600 text-sm ${liked && 'text-pink-600'}`}>
+              <span
+                className={` text-[#6e767d] group-hover:text-pink-600 text-sm 
+                ${liked && 'text-pink-600'}`}
+              >
                 {likes?.length}
               </span>
             )}
           </div>
 
           <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group">
-            <HiOutlineShare className="h-5  group-hover:text-[#1d9bf0]" />
+            <HiOutlineShare className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
           </div>
           <div className="cursor-pointer w-9 h-9  hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out group">
-            <HiOutlineChartBar className="h-5  group-hover:text-[#1d9bf0]" />
+            <HiOutlineChartBar className="h-5 text-[#6e767d]  group-hover:text-[#1d9bf0]" />
           </div>
         </div>
       </div>
