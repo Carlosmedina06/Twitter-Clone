@@ -22,17 +22,21 @@ const Modal = () => {
   const isOpen = useModalState((state) => state.modal)
   const tweetId = useTweetIdState((state) => state.tweetId)
   const { setIsOpen } = useModalState()
-  const [tweet] = useState()
+  const [tweet, setTweet] = useState()
   const [comment, setComment] = useState('')
   const router = useRouter()
 
-  // useEffect(
-  //   () =>
-  //     onSnapshot(doc(db, 'tweets', tweetId), (snapshot) => {
-  //       setTweet(snapshot.data())
-  //     }),
-  //   [tweetId],
-  // )
+  useEffect(() => {
+    const tuitId = () => {
+      onSnapshot(doc(db, 'tweets', tweetId), (snapshot) => {
+        setTweet(snapshot.data())
+      })
+    }
+
+    if (tweetId) {
+      tuitId()
+    }
+  }, [tweetId])
 
   const sendComment = async (e) => {
     e.preventDefault()
@@ -79,7 +83,7 @@ const Modal = () => {
             <div className="inline-block align-bottom bg-black rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
               <div className="flex items-center px-1.5 py-2 border-b border-gray-700">
                 <div
-                  className="hoverAnimation w-9 h-9 flex items-center justify-center xl:px-0 cursor-pointer"
+                  className="hover:bg-[#d9d9d9] hover:bg-opacity-10 rounded-full cursor-pointer w-[52px] h-[52px] xl:w-auto xl:h-auto xl:py-3 xl:px-4 transition duration-200 ease-out  flex items-center justify-center "
                   onClick={() => setIsOpen(false)}
                 >
                   <HiOutlineXCircle className="h-[22px] text-white" />
@@ -118,19 +122,19 @@ const Modal = () => {
 
                       <div className="flex items-center justify-between pt-2.5">
                         <div className="flex items-center">
-                          <div className="icon">
+                          <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out">
                             <HiOutlinePhotograph className="text-[#1d9bf0] h-[22px]" />
                           </div>
 
-                          <div className="icon rotate-90">
+                          <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out rotate-90">
                             <HiOutlineChartBar className="text-[#1d9bf0] h-[22px]" />
                           </div>
 
-                          <div className="icon">
+                          <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out">
                             <HiOutlineEmojiHappy className="text-[#1d9bf0] h-[22px]" />
                           </div>
 
-                          <div className="icon">
+                          <div className="cursor-pointer w-9 h-9 hover:bg-[#1d9bf0] hover:bg-opacity-10 flex items-center justify-center rounded-full transition ease-out">
                             <HiOutlineCalendar className="text-[#1d9bf0] h-[22px]" />
                           </div>
                         </div>
