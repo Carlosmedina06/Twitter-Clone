@@ -33,8 +33,19 @@ Este proyecto está licenciado bajo la licencia MIT. Consulte el archivo [LICENS
   ) para obtener más información.
 
 ## Autor
+Carlos Medina
 
-- [@Carlosmedina06](https://www.github.com/Carlosmedina06)
+[![LinkedIn][linkedin-shield]][linkedin-url]
+[![GitHub][github-shield]][github-url]
+
+<!-- Enlaces a redes sociales -->
+[linkedin-url]: https://www.linkedin.com/in/carlosmedina06/
+[github-url]: https://github.com/Carlosmedina06
+
+<!-- Escudos de redes sociales -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/carlosmedina06/
+[github-shield]: https://img.shields.io/badge/-GitHub-grey?style=flat-square&logo=github&logoColor=white&link=https://github.com/Carlosmedina06
+
 
 ## Contribuciones
 
@@ -46,8 +57,8 @@ deploy:
 https://twitter-clone-azure-sigma.vercel.app/
 
 images:
-![App Screenshot]([...])
-![App Screenshot]([...])
+<img width="1488" alt="Captura de pantalla 2023-04-17 a la(s) 08 12 04 p  m" src="https://user-images.githubusercontent.com/101008770/232629742-3ef492cc-7232-4c33-aef6-8b1f5f814003.png">
+<img width="1470" alt="Captura de pantalla 2023-04-17 a la(s) 08 12 18 p  m" src="https://user-images.githubusercontent.com/101008770/232629789-b94769c4-c036-4dc7-9d86-32fc07c87961.png">
 
 
 
