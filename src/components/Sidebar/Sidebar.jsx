@@ -32,7 +32,6 @@ const Sidebar = () => {
       <button className="transition duration-200 ease-out items-start text-lg hidden xl:inline ml-24 mt-4 bg-blue-400 text-white font-bold rounded-full w-56 h-[52px] shadow-md hover:bg-[#1a8cd8]">
         Tweet
       </button>
-
       <SidebarAccount />
     </div>
   )
