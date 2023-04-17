@@ -1,6 +1,6 @@
 # Twitter Clone
 
-Este es un proyecto de clon de Twitter desarrollado con Next.js, Tailwind CSS, Firebase y NextAuth. Permite a los usuarios crear una cuenta, iniciar sesión, publicar tweets, responder a otros tweets y likear tweets.
+Este es un proyecto de clon de Twitter desarrollado con Next.js, Tailwind CSS, Firebase, Zustand y NextAuth. Permite a los usuarios crear una cuenta, iniciar sesión, publicar tweets, responder a otros tweets y likear tweets.
 
 ## Requisitos previos
 
