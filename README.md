@@ -26,11 +26,8 @@ JWT_SECRET=supersecret
 
 ## Licencia
 
-Este proyecto está licenciado bajo la licencia MIT. Consulte el archivo [LICENSE](
+Este proyecto está licenciado bajo la licencia MIT.
 
-[...]
-  
-  ) para obtener más información.
 
 ## Autor
 Carlos Medina
