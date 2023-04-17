@@ -1,38 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Twitter Clone
 
-## Getting Started
+Este es un proyecto de clon de Twitter desarrollado con Next.js, Tailwind CSS, Firebase y NextAuth. Permite a los usuarios crear una cuenta, iniciar sesión, publicar tweets, responder a otros tweets y likear tweets.
 
-First, run the development server:
+## Requisitos previos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Antes de empezar a usar este proyecto, asegúrese de tener instalados los siguientes programas:
+
+- Node.js
+- npm o yarn
+
+## Instalación
+
+1. Clonar el repositorio en su máquina local con `git clone https://github.com/Carlosmedina06/Twitter-Clone`
+2. Instalar las dependencias con `npm install` o `yarn install`
+3. Crear un archivo `.env.local` en la raíz del proyecto y agregar las siguientes variables de entorno:
+
+```
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+NEXTAUTH_URL=http://localhost:3000
+JWT_SECRET=supersecret
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Iniciar el servidor de desarrollo con `npm run dev` o `yarn dev`
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Licencia
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Este proyecto está licenciado bajo la licencia MIT. Consulte el archivo [LICENSE](
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+[...]
+  
+  ) para obtener más información.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Autor
 
-## Learn More
+- [@Carlosmedina06](https://www.github.com/Carlosmedina06)
 
-To learn more about Next.js, take a look at the following resources:
+## Contribuciones
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Las contribuciones son siempre bienvenidas!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Demo
 
-## Deploy on Vercel
+deploy:
+https://twitter-clone-azure-sigma.vercel.app/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+images:
+![App Screenshot]([...])
+![App Screenshot]([...])
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
