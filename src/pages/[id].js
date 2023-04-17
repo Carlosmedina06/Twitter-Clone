@@ -12,6 +12,7 @@ import Modal from '@/components/Modal/Modal'
 import Login from '@/components/Login/Login'
 import useModalState from '@/store/modalState'
 import { db } from '@/utils/firebase/firebase'
+import Widgets from '@/components/Widgets/Widgets'
 
 function TweetPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession()
@@ -60,7 +61,6 @@ function TweetPage({ trendingResults, followResults, providers }) {
             </div>
             Tweet
           </div>
-
           <Tweet tweetPage id={id} tweet={tweet} />
           {comments.length > 0 && (
             <div className="pb-72">
@@ -70,7 +70,7 @@ function TweetPage({ trendingResults, followResults, providers }) {
             </div>
           )}
         </div>
-
+        <Widgets followResults={followResults} trendingResults={trendingResults} />
         {isOpen && <Modal />}
       </main>
     </div>
@@ -80,15 +80,15 @@ function TweetPage({ trendingResults, followResults, providers }) {
 export default TweetPage
 
 export async function getServerSideProps(context) {
-  // const trendingResults = await fetch('https://jsonkeeper.com/b/NKEV').then((res) => res.json())
-  // const followResults = await fetch('https://jsonkeeper.com/b/WWMJ').then((res) => res.json())
+  const trendingResults = await fetch('https://www.jsonkeeper.com/b/D3PH').then((res) => res.json())
+  const followResults = await fetch('https://www.jsonkeeper.com/b/8EGN').then((res) => res.json())
   const providers = await getProviders()
   const session = await getSession(context)
 
   return {
     props: {
-      // trendingResults,
-      // followResults,
+      trendingResults,
+      followResults,
       providers,
       session,
     },
